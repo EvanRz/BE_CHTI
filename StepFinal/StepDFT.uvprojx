@@ -399,9 +399,14 @@
               <FilePath>.\Src\Signal.asm</FilePath>
             </File>
             <File>
-              <FileName>Affichage_Valise.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Driver\Affichage_Valise.h</FilePath>
+              <FileName>bruitverre.asm</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\Src\bruitverre.asm</FilePath>
+            </File>
+            <File>
+              <FileName>GestionSon.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\Src\GestionSon.s</FilePath>
             </File>
           </Files>
         </Group>
@@ -422,6 +427,11 @@
               <FileName>DriverJeuLaser.lib</FileName>
               <FileType>4</FileType>
               <FilePath>.\Driver\DriverJeuLaser.lib</FilePath>
+            </File>
+            <File>
+              <FileName>affichage_valise.o</FileName>
+              <FileType>3</FileType>
+              <FilePath>.\Driver\affichage_valise.o</FilePath>
             </File>
           </Files>
         </Group>
@@ -823,9 +833,14 @@
               <FilePath>.\Src\Signal.asm</FilePath>
             </File>
             <File>
-              <FileName>Affichage_Valise.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Driver\Affichage_Valise.h</FilePath>
+              <FileName>bruitverre.asm</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\Src\bruitverre.asm</FilePath>
+            </File>
+            <File>
+              <FileName>GestionSon.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\Src\GestionSon.s</FilePath>
             </File>
           </Files>
         </Group>
@@ -846,6 +861,11 @@
               <FileName>DriverJeuLaser.lib</FileName>
               <FileType>4</FileType>
               <FilePath>.\Driver\DriverJeuLaser.lib</FilePath>
+            </File>
+            <File>
+              <FileName>affichage_valise.o</FileName>
+              <FileType>3</FileType>
+              <FilePath>.\Driver\affichage_valise.o</FilePath>
             </File>
           </Files>
         </Group>
@@ -1316,9 +1336,14 @@
               <FilePath>.\Src\Signal.asm</FilePath>
             </File>
             <File>
-              <FileName>Affichage_Valise.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Driver\Affichage_Valise.h</FilePath>
+              <FileName>bruitverre.asm</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\Src\bruitverre.asm</FilePath>
+            </File>
+            <File>
+              <FileName>GestionSon.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\Src\GestionSon.s</FilePath>
             </File>
           </Files>
         </Group>
@@ -1339,6 +1364,11 @@
               <FileName>DriverJeuLaser.lib</FileName>
               <FileType>4</FileType>
               <FilePath>.\Driver\DriverJeuLaser.lib</FilePath>
+            </File>
+            <File>
+              <FileName>affichage_valise.o</FileName>
+              <FileType>3</FileType>
+              <FilePath>.\Driver\affichage_valise.o</FilePath>
             </File>
           </Files>
         </Group>
@@ -1367,7 +1397,7 @@
   <LayerInfo>
     <Layers>
       <Layer>
-        <LayName>&lt;Project Info&gt;</LayName>
+        <LayName>StepDFT</LayName>
         <LayTarg>0</LayTarg>
         <LayPrjMark>1</LayPrjMark>
       </Layer>

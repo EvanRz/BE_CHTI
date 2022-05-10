@@ -1,0 +1,252 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 PRESERVE8
+    2 00000000                 THUMB
+    3 00000000         
+    4 00000000         ; ====================== zone de réservation de données,
+                         ======================================
+    5 00000000         ;Section RAM (read only) :
+    6 00000000                 area             mesdata,data,readonly
+    7 00000000         
+    8 00000000         
+    9 00000000         ;Section RAM (read write):
+   10 00000000                 area             maram,data,readwrite
+   11 00000000         
+   12 00000000                 EXPORT           callbackSon
+   13 00000000                 EXPORT           sortieSon
+   14 00000000                 EXPORT           soundIndex
+   15 00000000         
+   16 00000000                 EXTERN           LongeurSon
+   17 00000000                 EXTERN           PeriodeSonMicroSec
+   18 00000000                 EXTERN           Son
+   19 00000000         
+   20 00000000 00 00   sortieSon
+                               dcw              0
+   21 00000002 00 00 00000000 
+                       soundIndex
+                               dcd              0
+   22 00000008         
+   23 00000008 00002B10 
+                       MAX_ECH equ              11024
+   24 00000008 00000002 
+                       SIZE_BYTE
+                               equ              2
+   25 00000008 00008000 
+                       SHIFT   equ              32768
+   26 00000008 0000005B 
+                       COEF    equ              91
+   27 00000008 00000000 
+                       ZERO    equ              0
+   28 00000008         
+   29 00000008         ; ======================================================
+                       ========================================
+   30 00000008         
+   31 00000008         
+   32 00000008         ;Section ROM code (read only) :  
+   33 00000008                 area             moncode,code,readonly
+   34 00000000         ; écrire le code ici  
+   35 00000000         
+   36 00000000         callbackSon
+                               proc
+   37 00000000 B500            push             {lr}
+   38 00000002         
+   39 00000002 480C            ldr              r0,=sortieSon ;r0 = &sortieSon
+   40 00000004 490C            ldr              r1,=Son     ;r1 = &Son 
+   41 00000006 4A0D            ldr              r2,=soundIndex ;r2 = &index
+   42 00000008 6813            ldr              r3, [r2]    ;r3 = index
+   43 0000000A         
+   44 0000000A B401            push             {r0}        ;push de r0 dans la
+                                                             pile
+   45 0000000C F04F 005B       ldr              r0,=COEF    ;r0 = COEF
+   46 00000010         
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+   47 00000010 F931 C003       ldrsh            r12,[r1, r3] ;r4 = son[index]
+   48 00000014 F50C 4C00       add              r12,#SHIFT  ;r12 += SHIFT
+   49 00000018 FBBC FCF0       udiv             r12,r0      ;r12 /= COEF
+   50 0000001C         
+   51 0000001C BC01            pop              {r0}        ;pop r0
+   52 0000001E F8A0 C000       strh             r12,[r0]    ;sortieSon = son[in
+                                                            dex]
+   53 00000022         
+   54 00000022 F642 3C10       ldr              r12,=MAX_ECH ;r12 = MAX_ECH
+   55 00000026         
+   56 00000026 4563            cmp              r3,r12
+   57 00000028 BFB8            it               lt          ;si r3 < r3
+   58 0000002A 3302            addlt            r3,#SIZE_BYTE ;r3 += 2
+   59 0000002C 6013            str              r3,[r2]     ;index = r3
+   60 0000002E         
+   61 0000002E F04F 0C00       mov              r12,#0
+   62 00000032         
+   63 00000032 BD00            pop              {pc}
+   64 00000034         
+   65 00000034                 endp
+   66 00000034                 END
+              00000000 
+              00000000 
+              00000000 
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
+ork --depend=.\obj\gestionson.d -o.\obj\gestionson.o -I.\RTE\_CibleSondeKEIL -I
+C:\Programdata\Keil\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include -IC:\Programda
+ta\Keil\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include --predefine="__EVAL S
+ETA 1" --predefine="__MICROLIB SETA 1" --predefine="__UVISION_VERSION SETA 534"
+ --predefine="_RTE_ SETA 1" --predefine="STM32F10X_MD SETA 1" --predefine="_RTE
+_ SETA 1" --list=gestionson.lst Src\GestionSon.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+mesdata 00000000
+
+Symbol: mesdata
+   Definitions
+      At line 6 in file Src\GestionSon.s
+   Uses
+      None
+Comment: mesdata unused
+1 symbol
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+maram 00000000
+
+Symbol: maram
+   Definitions
+      At line 10 in file Src\GestionSon.s
+   Uses
+      None
+Comment: maram unused
+sortieSon 00000000
+
+Symbol: sortieSon
+   Definitions
+      At line 20 in file Src\GestionSon.s
+   Uses
+      At line 13 in file Src\GestionSon.s
+      At line 39 in file Src\GestionSon.s
+
+soundIndex 00000004
+
+Symbol: soundIndex
+   Definitions
+      At line 21 in file Src\GestionSon.s
+   Uses
+      At line 14 in file Src\GestionSon.s
+      At line 41 in file Src\GestionSon.s
+
+3 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+callbackSon 00000000
+
+Symbol: callbackSon
+   Definitions
+      At line 36 in file Src\GestionSon.s
+   Uses
+      At line 12 in file Src\GestionSon.s
+Comment: callbackSon used once
+moncode 00000000
+
+Symbol: moncode
+   Definitions
+      At line 33 in file Src\GestionSon.s
+   Uses
+      None
+Comment: moncode unused
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Absolute symbols
+
+COEF 0000005B
+
+Symbol: COEF
+   Definitions
+      At line 26 in file Src\GestionSon.s
+   Uses
+      At line 45 in file Src\GestionSon.s
+Comment: COEF used once
+MAX_ECH 00002B10
+
+Symbol: MAX_ECH
+   Definitions
+      At line 23 in file Src\GestionSon.s
+   Uses
+      At line 54 in file Src\GestionSon.s
+Comment: MAX_ECH used once
+SHIFT 00008000
+
+Symbol: SHIFT
+   Definitions
+      At line 25 in file Src\GestionSon.s
+   Uses
+      At line 48 in file Src\GestionSon.s
+Comment: SHIFT used once
+SIZE_BYTE 00000002
+
+Symbol: SIZE_BYTE
+   Definitions
+      At line 24 in file Src\GestionSon.s
+   Uses
+      At line 58 in file Src\GestionSon.s
+Comment: SIZE_BYTE used once
+ZERO 00000000
+
+Symbol: ZERO
+   Definitions
+      At line 27 in file Src\GestionSon.s
+   Uses
+      None
+Comment: ZERO unused
+5 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+External symbols
+
+LongeurSon 00000000
+
+Symbol: LongeurSon
+   Definitions
+      At line 16 in file Src\GestionSon.s
+   Uses
+      None
+Comment: LongeurSon unused
+PeriodeSonMicroSec 00000000
+
+Symbol: PeriodeSonMicroSec
+   Definitions
+      At line 17 in file Src\GestionSon.s
+   Uses
+      None
+Comment: PeriodeSonMicroSec unused
+Son 00000000
+
+Symbol: Son
+   Definitions
+      At line 18 in file Src\GestionSon.s
+   Uses
+      At line 40 in file Src\GestionSon.s
+Comment: Son used once
+3 symbols
+351 symbols in table
